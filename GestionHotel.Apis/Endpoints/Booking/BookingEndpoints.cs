@@ -1,5 +1,6 @@
-﻿namespace GestionHotel.Apis.Endpoints.Booking;
+﻿using Microsoft.AspNetCore.Routing;
 
+namespace GestionHotel.Apis.Endpoints.Booking;
 
 public static class BookingEndpoints
 {

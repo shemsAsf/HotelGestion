@@ -1,25 +1,10 @@
-using GestionHotel.Apis;
-using GestionHotel.Apis.Endpoints.Booking;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder(args);
+Startup startup = new(builder.Configuration);
+startup.ConfigureServices(builder.Services);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<SampleInjectionInterface, SampleInjectionImplementation>();
+WebApplication app = builder.Build();
 
-var app = builder.Build();
+startup.Configure(app, app.Environment);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-
-app.MapBookingsEndpoints();
 app.Run();
